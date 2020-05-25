@@ -274,10 +274,10 @@ impl<S: Read + Write, C: Callback> HandshakeRole for ServerHandshake<S, C> {
 
             StageResult::DoneWriting(stream) => {
                 if let Some(err) = self.error_code.take() {
-                    debug!("Server handshake failed.");
+                    info!("Server handshake failed.");
                     return Err(Error::Http(StatusCode::from_u16(err)?));
                 } else {
-                    debug!("Server handshake done.");
+                    info!("Server handshake done.");
                     let websocket = WebSocket::from_raw_socket(stream, Role::Server, self.config);
                     ProcessingResult::Done(websocket)
                 }

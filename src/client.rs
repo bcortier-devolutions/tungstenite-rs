@@ -131,7 +131,7 @@ fn connect_to_some(addrs: &[SocketAddr], uri: &Uri, mode: Mode) -> Result<AutoSt
         .host()
         .ok_or_else(|| Error::Url("No host name in the URL".into()))?;
     for addr in addrs {
-        debug!("Trying to contact {} at {}...", uri, addr);
+        info!("Trying to contact {} at {}...", uri, addr);
         if let Ok(raw_stream) = TcpStream::connect(addr) {
             if let Ok(stream) = wrap_stream(raw_stream, domain, mode) {
                 return Ok(stream);

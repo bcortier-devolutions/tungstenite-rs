@@ -91,7 +91,7 @@ impl<S: Read + Write> HandshakeRole for ClientHandshake<S> {
                 tail,
             } => {
                 self.verify_data.verify_response(&result)?;
-                debug!("Client handshake done.");
+                info!("Client handshake done.");
                 let websocket =
                     WebSocket::from_partially_read(stream, tail, Role::Client, self.config);
                 ProcessingResult::Done((websocket, result))
