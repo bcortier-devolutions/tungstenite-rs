@@ -206,6 +206,7 @@ impl FrameCodec {
                 .into());
             }
             self.out_buffer.drain(0..len);
+            info!("write_pending {}", len);
         }
         stream.flush()?;
         Ok(())
